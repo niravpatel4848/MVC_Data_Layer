@@ -127,11 +127,7 @@ namespace MVC_Data_Layer.Controllers
             }
         }
 
-        // GET: Person/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        
 
         [HttpDelete]
         public ActionResult DeletePerson(int userId)

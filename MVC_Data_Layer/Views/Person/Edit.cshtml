@@ -6,10 +6,10 @@
 
 <h2>EDIT PERSON DETAILS</h2>
 
-@using (Html.BeginForm("Edit","Person"))
+@using (Html.BeginForm("Edit", "Person"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -72,5 +72,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <div class="btn btn-default">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>

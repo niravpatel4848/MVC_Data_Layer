@@ -9,40 +9,40 @@
 
 @*<form method="post" action="Create">
 
-    <div class="form-group">
-        <label for="@Model.FirstName">First Name</label>
-        <input type="text" class="form-control" id="FirstName" placeholder="First Name">
-    </div>
-    <div class="form-group">
-        <label for="@Model.LastName">Last Name</label>
-        <input type="text" class="form-control" id="LastName" placeholder="Last Name">
-    </div>
-    <div class="form-group">
-        <label for="@Model.Age">Age</label>
-        <input type="number" class="form-control" id="Age" placeholder="Age">
-    </div>
+        <div class="form-group">
+            <label for="@Model.FirstName">First Name</label>
+            <input type="text" class="form-control" id="FirstName" placeholder="First Name">
+        </div>
+        <div class="form-group">
+            <label for="@Model.LastName">Last Name</label>
+            <input type="text" class="form-control" id="LastName" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+            <label for="@Model.Age">Age</label>
+            <input type="number" class="form-control" id="Age" placeholder="Age">
+        </div>
 
-    <div class="form-group">
-        <label for="@Model.Gender">Gender</label>
-        <input type="text" class="form-control" id="Gender" placeholder="Gender">
-    </div>
-    <div class="form-group">
-        <label for="@Model.EmailID">Email</label>
-        <input type="email" class="form-control" id="EmailID" placeholder="Email">
-    </div>
-    <div class="form-group">
-        <label for="@Model.AddressID">Address ID</label>
-        <input type="password" class="form-control" id="AddressID" placeholder="Address ID">
-    </div>
-    
-    <button type="submit" class="btn btn-default">ADD</button>
-</form>*@
+        <div class="form-group">
+            <label for="@Model.Gender">Gender</label>
+            <input type="text" class="form-control" id="Gender" placeholder="Gender">
+        </div>
+        <div class="form-group">
+            <label for="@Model.EmailID">Email</label>
+            <input type="email" class="form-control" id="EmailID" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="@Model.AddressID">Address ID</label>
+            <input type="password" class="form-control" id="AddressID" placeholder="Address ID">
+        </div>
+
+        <button type="submit" class="btn btn-default">ADD</button>
+    </form>*@
 
 
-@using (Html.BeginForm("Create", "Person")) 
+@using (Html.BeginForm("Create", "Person"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -103,5 +103,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <div class="btn btn-default">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>

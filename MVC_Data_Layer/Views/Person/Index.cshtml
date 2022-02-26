@@ -51,7 +51,8 @@
                                 </a>
                             </td>
                             <td>
-                                <span data-toggle="modal" data-target="#myModal" onclick="confirmDelete(@obj.PersonID)">
+                                <span data-toggle="modal" data-target="#myModal" onclick="confirmDelete(@obj.PersonID)"
+                                      class="text-danger" style="cursor:pointer">
                                     <i class="fa-solid fa-trash"></i>
                                 </span>
                             </td>
@@ -80,14 +81,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel"></h4>
+                    <h4 class="modal-title text-danger" id="myModalLabel"></h4>
                 </div>
-                <div class="modal-body text-danger">
-                    Are you sure you want to delete this?
+                <div class="modal-body">
+                    <h3>Are you sure you want to delete this?</h3>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" id="btnDelete" onclick="DeletePerson()" class="btn btn-primary">DELETE</button>
+                    <button type="button" id="btnDelete" onclick="DeletePerson()" class="btn btn-danger">DELETE</button>
                 </div>
             </div>
         </div>
@@ -125,11 +126,11 @@
 {
 
     <script>
-        function confirmDelete(userid) {
+        function confirmDelete(personid) {
             var $confirm = $("#myModal");
             $confirm.find("#btnDelete").off('click').click(function() {
                 $confirm.modal("hide");
-                DeletePerson(userid);
+                DeletePerson(personid);
             });
             
         }
@@ -137,8 +138,8 @@
             $.ajax({
                 url: '../Person/DeletePerson',
                 method: "DELETE",
-                data: JSON.stringify({ 'userId': id }), // Added Stringify
-                contentType: 'application/json', // Added content type
+                data: JSON.stringify({ 'userId': id }),
+                contentType: 'application/json', 
                 success: function (data) {
                     location.reload();
                 }

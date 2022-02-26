@@ -72,19 +72,19 @@ namespace Data_Layer
         public PersonBO GetPerson(int id)
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
-            //SqlCommand cmd = new SqlCommand("SP_get_person", conn);
-            //cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("SP_get_person", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
 
-            //cmd.Parameters.AddWithValue("@PersonID", id);
+            cmd.Parameters.AddWithValue("@PersonID", id);
 
-            //conn.Open();
-
-            //SqlDataReader rdr = cmd.ExecuteReader();
-
-            string sqlQuery = "SELECT * FROM Person WHERE PersonID= " + id;
-            SqlCommand cmd = new SqlCommand(sqlQuery, conn);
             conn.Open();
+
             SqlDataReader rdr = cmd.ExecuteReader();
+
+            //string sqlQuery = "SELECT * FROM Person WHERE PersonID= " + id;
+            //SqlCommand cmd = new SqlCommand(sqlQuery, conn);
+            //conn.Open();
+            //SqlDataReader rdr = cmd.ExecuteReader();
 
 
             PersonBO person = new PersonBO();
@@ -99,17 +99,6 @@ namespace Data_Layer
                 person.Gender = Convert.ToString(rdr["Gender"]);
                 person.AddressID = Convert.ToInt32(rdr["AddressID"]);
             }
-
-            //PersonBO person = new PersonBO()
-            //{
-            //    PersonID = Convert.ToInt32(rdr["PersonID"]),
-            //    FirstName = Convert.ToString(rdr["FirstName"]),
-            //    LastName = Convert.ToString(rdr["LastName"]),
-            //    Age = Convert.ToInt32(rdr["Age"]),
-            //    EmailID = Convert.ToString(rdr["EmailID"]),
-            //    Gender = Convert.ToString(rdr["Gender"]),
-            //    AddressID = Convert.ToInt32(rdr["AddressID"])
-            //};
 
             return person;
         }
@@ -128,13 +117,7 @@ namespace Data_Layer
             cmd.Parameters.AddWithValue("@Gender", personBO.Gender);
             cmd.Parameters.AddWithValue("@AddressID", personBO.AddressID);
 
-            //SqlParameter outputParameter = new SqlParameter();
-            //outputParameter.ParameterName = "@PersonID";
-            //outputParameter.SqlDbType = SqlDbType.Int;
-            //outputParameter.Direction = ParameterDirection.Output;
-            //cmd.Parameters.Add(outputParameter);
-
-            //lblMessess.Text = "ID of a new person inserted is" + " " + outputParameter.Value.ToString() + ".";
+            
 
             try
             {
