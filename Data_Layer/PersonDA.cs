@@ -170,5 +170,21 @@ namespace Data_Layer
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
+        public void DeletePerson(int ID)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionString);
+
+            SqlCommand cmd = new SqlCommand("SP_delete_person", conn);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@PersonID", ID);
+
+            conn.Open();
+
+            cmd.ExecuteNonQuery();
+
+        }
     }
 }

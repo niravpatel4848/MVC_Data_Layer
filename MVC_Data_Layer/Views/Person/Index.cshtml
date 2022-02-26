@@ -37,7 +37,7 @@
                 <tbody>
                     @foreach (var obj in Model)
                     {
-                        <tr>
+                        <tr id="row_@obj.PersonID">
                             <td>@obj.PersonID</td>
                             <td>@obj.FirstName</td>
                             <td>@obj.LastName</td>
@@ -51,7 +51,7 @@
                                 </a>
                             </td>
                             <td>
-                                <span href="Person/Delete/@obj.PersonID" data-toggle="modal" data-target="#myModal">
+                                <span data-toggle="modal" data-target="#myModal" onclick="confirmDelete(@obj.PersonID)">
                                     <i class="fa-solid fa-trash"></i>
                                 </span>
                             </td>
@@ -87,9 +87,67 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">DELETE</button>
+                    <button type="button" id="btnDelete" onclick="DeletePerson()" class="btn btn-primary">DELETE</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <input type="hidden" id="hiddenPersonId" />
+
 </div>
+
+<script>
+
+    //var confirmDelete = function (PersonId) {
+
+    //    $("#hiddenPersonId").val(PersonId);
+    //}
+
+    //var DeletePerson = function () {
+
+    //    var PerId = $("#hiddenPersonId").val();
+
+    //    $.ajax({
+
+    //        type: "POST",
+    //        url: "/Person/DeletePerson",
+    //        data: { PersonId: PerId },
+    //        success: function (result) {
+    //            $("#myModal").modal('hide');
+    //            $("#row_" + PerId).remove();
+    //        }
+    //    })
+    //}
+</script>
+
+    @section scripts
+{
+
+    <script>
+        function confirmDelete(userid) {
+            var $confirm = $("#myModal");
+            $confirm.find("#btnDelete").off('click').click(function() {
+                $confirm.modal("hide");
+                DeletePerson(userid);
+            });
+            
+        }
+        var DeletePerson = function (id) {
+            $.ajax({
+                url: '../Person/DeletePerson',
+                method: "DELETE",
+                data: JSON.stringify({ 'userId': id }), // Added Stringify
+                contentType: 'application/json', // Added content type
+                success: function (data) {
+                    location.reload();
+                }
+            });
+        }
+</script>
+
+}
+
+
+
+

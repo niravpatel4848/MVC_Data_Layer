@@ -133,20 +133,14 @@ namespace MVC_Data_Layer.Controllers
             return View();
         }
 
-        // POST: Person/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpDelete]
+        public ActionResult DeletePerson(int userId)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            PersonDA dal = new PersonDA();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            dal.DeletePerson(userId);
+
+            return null;
         }
     }
 }
